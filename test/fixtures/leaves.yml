@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_date: 2019-09-29
+  to_date: 2019-09-29
+  reason: MyText
+  user_id: 1
+  reporting_head_id: 1
+  status: MyString
+
+two:
+  from_date: 2019-09-29
+  to_date: 2019-09-29
+  reason: MyText
+  user_id: 1
+  reporting_head_id: 1
+  status: MyString

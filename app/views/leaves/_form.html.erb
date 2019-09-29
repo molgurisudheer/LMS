@@ -1,0 +1,39 @@
+<%= form_with(model: @leave, local: true) do |form| %>
+  <% if @leave.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@leave.errors.count, "error") %> prohibited this leave from being saved:</h2>
+
+      <ul>
+      <% @leave.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field "user_id", value: current_user.id %>
+
+  <div class="field">
+    <%= form.label :from_date %>
+    <%= form.date_select :from_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_date %>
+    <%= form.date_select :to_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reason %>
+    <%= form.text_area :reason %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reporting_head_id %>
+    <%= form.select("reporting_head_id", User.reporting_heads.collect {|u| [ u.username, u.id ] }, { include_blank: "Select reporting head" }) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
