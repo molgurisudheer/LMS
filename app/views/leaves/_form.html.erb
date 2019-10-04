@@ -1,0 +1,54 @@
+<%= form_with(model: @leave, local: true) do |form| %>
+  <% if @leave.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <ul>
+          <% @leave.errors.full_messages.each do |message| %>
+
+            <li><%= message %></li>
+
+          <% end %>
+        </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field "user_id", value: current_user.id %>
+
+  <div class="form-label-group">
+    <label for="inputDate">From Date</label>
+    <%= form.text_field :from_date, class: "form-control datepicker" %>
+  </div>
+
+  <div class="form-label-group">
+    <label for="inputDate">To Date</label>
+    <%= form.text_field :to_date, class: "form-control datepicker" %>
+  </div>
+
+  <div class="form-label-group">
+    <label for="inputDate">Reason</label>
+    <%= form.text_area :reason, class: "form-control" %>
+  </div>
+
+  <div class="form-label-group">
+    <label for="inputDate">Reporting Head</label>
+    <%= form.select("reporting_head_id", User.reporting_heads.collect { |u| [u.username, u.id] }, {include_blank: "Select reporting head"}, class: "form-control") %>
+  </div>
+  &nbsp;
+  <div class="actions">
+    <%= form.submit class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('.datepicker').datepicker({
+      autoclose: true,
+      todayHighlight: true
+
+    });
+  });
+</script>
